@@ -45,6 +45,15 @@ public class AccountController {
     }
 
     /**
+     * Handles HTTP POST requests to "/api/v1/get_current_account_info" to get information about the account of currently logged-in user.
+     * @return ResponseEntity object containing the AccountDTO object and HTTP status code.
+     */
+    @GetMapping("/get_current_account_info")
+    public ResponseEntity<AccountDTO> getCurrentAccountInfo() {
+        AccountDTO account = accountService.getCurrentAccountInfo();
+        return ResponseEntity.ok(account);
+    }
+    /**
      * Handles HTTP POST requests to "/api/v1/account/create_account" to create a new account for the current user.
      * @return ResponseEntity object containing the AccountDTO object and HTTP status code.
      */
