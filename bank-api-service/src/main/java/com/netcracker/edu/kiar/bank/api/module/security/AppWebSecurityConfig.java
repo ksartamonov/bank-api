@@ -31,7 +31,8 @@ public class AppWebSecurityConfig {
 
 
                 .requestMatchers(ACCOUNT_MATCHER + "/create_account",
-                        ACCOUNT_MATCHER + "/delete_current_account")
+                        ACCOUNT_MATCHER + "/delete_current_account",
+                        ACCOUNT_MATCHER + "/get_current_account_info")
                 .hasRole("user")
                 .requestMatchers(ACCOUNT_MATCHER + "/get_all",
                         ACCOUNT_MATCHER + "/find_by_account_number/*",
