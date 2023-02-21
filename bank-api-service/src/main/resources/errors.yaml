@@ -1,0 +1,27 @@
+- code: ERR-0001
+  http: 409
+  message: This authentication id already exists.
+
+- code: ERR-0002
+  http: 400
+  message: User creation form is incorrect.
+
+- code: ERR-0003
+  http: 404
+  message: This user not found.
+
+- code: ERR-0004
+  http: 404
+  message: This account not found.
+
+- code: ERR-0005
+  http: 402
+  message: Not enough money on the account
+
+- code: ERR-0006
+  http: 404
+  message: Value cannot be negative.
+
+- code: ERR-0007
+  http: 405
+  message: Unsupported operation.

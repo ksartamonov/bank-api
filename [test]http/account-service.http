@@ -1,0 +1,18 @@
+### Create new account
+POST localhost:8082/api/v1/account/create_account
+Authorization: Basic MTIzNDU2Nzg2OTY5Njk0NDpzdXBlcnVzZXI2OQ==
+
+###
+Authorization: Basic dXNlcjpkNzhjYzIwYi0zYWJjLTRmNWMtYjRjMi1hOWExOGY2MjQyMDg=
+
+Authorization: Basic dXNlcjpkNzhjYzIwYi0zYWJjLTRmNWMtYjRjMi1hOWExOGY2MjQyMDg=
+
+###
+Content-Type: application/json
+
+{
+  "firstName": "Lirill",
+  "lastName": "Test",
+  "authId": "9999999999999999",
+  "password": "123456ol"
+}

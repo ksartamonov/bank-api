@@ -1,0 +1,10 @@
+version: '3.3'
+services:
+  edu-db:
+    image: postgres
+    ports:
+      - "54321:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+
