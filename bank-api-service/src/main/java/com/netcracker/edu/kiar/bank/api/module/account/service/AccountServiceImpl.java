@@ -50,6 +50,13 @@ public class AccountServiceImpl implements AccountService {
 
     @Override
     public AccountDTO createCurrentUserAccount() {
+        Optional<AccountEntity> entityOpt = repository.findByUser(userHelper.getCurrentUser());
+        if (entityOpt.isPresent()) {
+            exceptionManager.throwsException(
+                    "ERR-0008",
+                    Map.of("account_number", entityOpt.get().getAccountNumber())
+            );
+        }
         UserDTO userDTO = userService.getCurrentUserInfo();
 
         AccountEntity account = AccountEntity.builder()
@@ -71,6 +78,13 @@ public class AccountServiceImpl implements AccountService {
             repository.delete(account);
             return makeAccountDTO(account);
         }
+
+        if (entityOpt.isEmpty()) {
+            exceptionManager.throwsException(
+                    "ERR-0004",
+                    Map.of("account_number", accountNumber)
+            );
+        }
         return null;
     }
 
@@ -85,6 +99,7 @@ public class AccountServiceImpl implements AccountService {
     @Override
     public AccountDTO getCurrentAccountInfo() {
         Optional<AccountEntity> entityOpt = repository.findByUser(userHelper.getCurrentUser());
+
         checkOnEmptiness(entityOpt, userHelper.getCurrentUser().getUsername());
         return makeAccountDTO(entityOpt.get());
     }

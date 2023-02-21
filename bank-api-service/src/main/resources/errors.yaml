@@ -1,6 +1,6 @@
 - code: ERR-0001
   http: 409
-  message: This authentication id already exists.
+  message: This username already exists.
 
 - code: ERR-0002
   http: 400
@@ -25,3 +25,7 @@
 - code: ERR-0007
   http: 405
   message: Unsupported operation.
+
+- code: ERR-0008
+  http: 409
+  message: This account already exists.
