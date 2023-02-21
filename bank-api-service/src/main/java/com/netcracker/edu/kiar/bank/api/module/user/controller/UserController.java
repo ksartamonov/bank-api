@@ -6,7 +6,6 @@ import com.netcracker.edu.kiar.bank.api.module.user.model.dto.UserDTO;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 
@@ -53,6 +52,7 @@ public class UserController {
     /**
      * Handles HTTP POST requests to "/api/v1/user/create_user" and creates a new user based on the information
      * in the UserCreationForm object passed in the request body.
+     *
      * @param form a UserCreationForm object containing the information needed to create a new user.
      * @return a ResponseEntity containing a UserDTO object and an HTTP status code.
      */
@@ -65,6 +65,7 @@ public class UserController {
     /**
      * Handles HTTP DELETE requests to "/api/v1/user/delete_by_username/{username}" and deletes the user with the
      * specified username.
+     *
      * @param username the username of the user to delete.
      * @return a ResponseEntity containing a UserDTO object and an HTTP status code.
      */
@@ -76,6 +77,7 @@ public class UserController {
 
     /**
      * Handles HTTP DELETE requests to "/api/v1/user/delete_current_user" and deletes the currently logged-in user.
+     *
      * @return a ResponseEntity containing a UserDTO object and an HTTP status code.
      */
     @DeleteMapping("/delete_current_user")
@@ -86,6 +88,7 @@ public class UserController {
 
     /**
      * Handles HTTP POST requests to "/api/v1/user/update_user" and updates the information of the currently logged-in user.
+     *
      * @param form a UserCreationForm object containing the information needed to update the user.
      * @return a ResponseEntity containing a UserDTO object and an HTTP status code.
      */

@@ -65,8 +65,8 @@ public class UserServiceImplTest {
     public void createNewUser_wrongCreationForm() {
 
         UserCreationForm form = new UserCreationForm();
-        form.setFirstName("ivan");
-        form.setLastName("ivanov");
+        form.setFirstName("Ivan");
+        form.setLastName("Ivanov");
         form.setUsername("wrong-username");
         form.setPassword("qwerty");
 

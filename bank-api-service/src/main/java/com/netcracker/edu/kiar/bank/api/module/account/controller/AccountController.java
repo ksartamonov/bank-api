@@ -24,6 +24,7 @@ public class AccountController {
 
     /**
      * Handles HTTP GET requests to "/api/v1/account/get_all" to retrieve all user accounts.
+     *
      * @return ResponseEntity object containing the list of AccountDTO objects and HTTP status code.
      */
     @GetMapping("/get_all")
@@ -35,6 +36,7 @@ public class AccountController {
     /**
      * Handles HTTP GET requests to "/api/v1/account/find_by_account_number/{account_number}" to find an account
      * by its account number.
+     *
      * @param account_number the account number to search for.
      * @return ResponseEntity object containing the AccountDTO object and HTTP status code.
      */
@@ -46,6 +48,7 @@ public class AccountController {
 
     /**
      * Handles HTTP POST requests to "/api/v1/get_current_account_info" to get information about the account of currently logged-in user.
+     *
      * @return ResponseEntity object containing the AccountDTO object and HTTP status code.
      */
     @GetMapping("/get_current_account_info")
@@ -53,19 +56,22 @@ public class AccountController {
         AccountDTO account = accountService.getCurrentAccountInfo();
         return ResponseEntity.ok(account);
     }
+
     /**
      * Handles HTTP POST requests to "/api/v1/account/create_account" to create a new account for the current user.
+     *
      * @return ResponseEntity object containing the AccountDTO object and HTTP status code.
      */
     @PostMapping("/create_account")
     public ResponseEntity<AccountDTO> createAccount() {
-        AccountDTO account =  accountService.createCurrentUserAccount();
+        AccountDTO account = accountService.createCurrentUserAccount();
         return ResponseEntity.ok(account);
     }
 
     /**
      * Handles HTTP POST requests to "/api/v1/account/delete_by_account_number/{account_number}" to delete an account
      * by its account number.
+     *
      * @param account_number the account number of the account to delete.
      * @return ResponseEntity object containing the AccountDTO object and HTTP status code.
      */
@@ -78,6 +84,7 @@ public class AccountController {
     /**
      * Handles HTTP DELETE requests to "/api/v1/account/delete_current_account" to delete the currently logged-in
      * user's account.
+     *
      * @return ResponseEntity object containing the AccountDTO object and HTTP status code.
      */
     @DeleteMapping("/delete_current_account")

@@ -1,15 +1,14 @@
 package com.netcracker.edu.kiar.bank.api.module.account.service;
 
+import com.netcracker.edu.kiar.bank.api.module.account.AccountService;
 import com.netcracker.edu.kiar.bank.api.module.account.dao.AccountEntity;
 import com.netcracker.edu.kiar.bank.api.module.account.dao.AccountRepository;
 import com.netcracker.edu.kiar.bank.api.module.account.model.dto.AccountDTO;
-import com.netcracker.edu.kiar.bank.api.module.account.AccountService;
 import com.netcracker.edu.kiar.bank.api.module.account.model.dto.AccountUpdateForm;
 import com.netcracker.edu.kiar.bank.api.module.account.model.factories.AccountDTOFactory;
 import com.netcracker.edu.kiar.bank.api.module.exceptions.BusinessExceptionManager;
 import com.netcracker.edu.kiar.bank.api.module.user.UserService;
 import com.netcracker.edu.kiar.bank.api.module.user.model.dto.UserDTO;
-
 import com.netcracker.edu.kiar.bank.api.module.user.service.UserHelper;
 import org.springframework.stereotype.Service;
 
@@ -60,11 +59,11 @@ public class AccountServiceImpl implements AccountService {
         UserDTO userDTO = userService.getCurrentUserInfo();
 
         AccountEntity account = AccountEntity.builder()
-                        .accountNumber(String.valueOf(
+                .accountNumber(String.valueOf(
                                 UUID.randomUUID().getMostSignificantBits() & Long.MAX_VALUE) // generating unique card number containing 16 digits
-                                .substring(0, 16))
-                                .balance(0)
-                                        .user(userHelper.getCurrentUser()).build();
+                        .substring(0, 16))
+                .balance(0)
+                .user(userHelper.getCurrentUser()).build();
 
         return makeAccountDTO(repository.save(account));
     }
@@ -99,12 +98,19 @@ public class AccountServiceImpl implements AccountService {
     @Override
     public AccountDTO getCurrentAccountInfo() {
         Optional<AccountEntity> entityOpt = repository.findByUser(userHelper.getCurrentUser());
-
         checkOnEmptiness(entityOpt, userHelper.getCurrentUser().getUsername());
+
         return makeAccountDTO(entityOpt.get());
     }
+
     @Override
     public AccountDTO updateAccount(AccountUpdateForm form) {
+        if (form.getBalance() < 0) {
+            exceptionManager.throwsException(
+                    "ERR-0006",
+                    Map.of("value", form.getBalance())
+            );
+        }
         Optional<AccountEntity> entityOpt = repository.findByAccountNumber(form.getAccountNumber());
         checkOnEmptiness(entityOpt, form.getAccountNumber());
 
@@ -118,7 +124,8 @@ public class AccountServiceImpl implements AccountService {
     /**
      * Checks "Optional AccountEntity" on emptiness, in case if it is empty throws Business exception with the identifier
      * - account_number or username
-     * @param entityOpt "Optional AccountEntity" to check on emptiness
+     *
+     * @param entityOpt  "Optional AccountEntity" to check on emptiness
      * @param identifier account_number or username
      */
     private void checkOnEmptiness(Optional<AccountEntity> entityOpt, String identifier) {

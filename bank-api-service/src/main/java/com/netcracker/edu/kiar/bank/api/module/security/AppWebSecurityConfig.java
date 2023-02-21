@@ -29,7 +29,6 @@ public class AppWebSecurityConfig {
                         USER_MATCHER + "/delete_by_username/*")
                 .hasRole("admin")
 
-
                 .requestMatchers(ACCOUNT_MATCHER + "/create_account",
                         ACCOUNT_MATCHER + "/delete_current_account",
                         ACCOUNT_MATCHER + "/get_current_account_info")
