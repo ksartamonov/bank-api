@@ -16,10 +16,7 @@ import com.netcracker.edu.kiar.bank.api.module.transaction.model.enums.Transacti
 import com.netcracker.edu.kiar.bank.api.module.transaction.model.factories.TransactionDTOFactory;
 import org.springframework.stereotype.Service;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 import static com.netcracker.edu.kiar.bank.api.module.transaction.model.factories.TransactionDTOFactory.makeTransactionDTO;
@@ -85,7 +82,7 @@ public class TransactionServiceImpl implements TransactionService {
 
 
     @Override
-    public Set<TransactionDTO> makeInternalTransfer(InternalTransactionForm form) {
+    public List<TransactionDTO> makeInternalTransfer(InternalTransactionForm form) {
 
         validationHelper.validateInternalTransactionForm(form);
 
@@ -113,12 +110,15 @@ public class TransactionServiceImpl implements TransactionService {
                         .balance(accountReceiver.getBalance() + form.getValue())
                         .build());
 
-        Set<TransactionEntity> entities = new HashSet<>();
+        List<TransactionEntity> entities = new ArrayList<>();
+        // Sender put first
         entities.add(TransactionEntity.builder()
                 .accountNumber(form.getSenderNumber())
                 .type(TransactionType.OUTGOING_TRANSFER)
                 .value(form.getValue())
                 .build());
+
+        // Receiver put second
         entities.add(TransactionEntity.builder()
                 .accountNumber(form.getReceiverNumber())
                 .type(TransactionType.INCOMING_TRANSFER)
@@ -127,7 +127,7 @@ public class TransactionServiceImpl implements TransactionService {
 
         return repository.saveAll(entities).stream().map(
                         TransactionDTOFactory::makeTransactionDTO)
-                .collect(Collectors.toSet());
+                .collect(Collectors.toList());
     }
 
     @Override

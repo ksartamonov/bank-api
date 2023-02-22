@@ -46,8 +46,8 @@ public class TransactionController {
      * @return a ResponseEntity containing the created TransactionDTOs
      */
     @PostMapping("/make_internal_transfer")
-    public ResponseEntity<Set<TransactionDTO>> makeInternalTransfer(@RequestBody InternalTransactionForm form) {
-        Set<TransactionDTO> transaction = transactionService.makeInternalTransfer(form);
+    public ResponseEntity<List<TransactionDTO>> makeInternalTransfer(@RequestBody InternalTransactionForm form) {
+        List<TransactionDTO> transaction = transactionService.makeInternalTransfer(form);
         return ResponseEntity.ok(transaction);
     }
 

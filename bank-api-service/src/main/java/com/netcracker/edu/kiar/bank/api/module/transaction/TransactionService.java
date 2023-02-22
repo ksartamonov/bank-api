@@ -5,7 +5,6 @@ import com.netcracker.edu.kiar.bank.api.module.transaction.model.dto.InternalTra
 import com.netcracker.edu.kiar.bank.api.module.transaction.model.dto.TransactionDTO;
 
 import java.util.List;
-import java.util.Set;
 
 public interface TransactionService {
     /**
@@ -22,9 +21,9 @@ public interface TransactionService {
      * Transfer between clients within the bank, debiting from the sender, replenishment - from the recipient.
      *
      * @param form the form for making an internal transfer
-     * @return the set of transaction DTOs for the created transactions
+     * @return the list of transaction DTOs for the created transactions, 0-th element - sender, 1-st element - receiver
      */
-    Set<TransactionDTO> makeInternalTransfer(InternalTransactionForm form);
+    List<TransactionDTO> makeInternalTransfer(InternalTransactionForm form);
 
     /**
      * Retrieves a list of all transactions for a specific account number.
