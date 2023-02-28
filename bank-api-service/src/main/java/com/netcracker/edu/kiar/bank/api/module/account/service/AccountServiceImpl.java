@@ -112,6 +112,7 @@ public class AccountServiceImpl implements AccountService {
             );
         }
         Optional<AccountEntity> entityOpt = repository.findByAccountNumber(form.getAccountNumber());
+        // after finding hibernate cache has entity, no need to save wow!!
         checkOnEmptiness(entityOpt, form.getAccountNumber());
 
         AccountEntity entity = entityOpt.get();

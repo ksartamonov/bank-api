@@ -1,10 +1,24 @@
 version: '3.3'
 services:
   edu-db:
+    container_name: edu-db
     image: postgres
     ports:
       - "54321:5432"
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
+
+  bank-api-service:
+    image: bank-api-service-image
+    restart: always
+    build: bank-api-service
+    depends_on:
+      - edu-db
+    ports:
+      - 8082:8082
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://edu-db:5432/postgres
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: postgres
 

@@ -2,7 +2,6 @@ package com.netcracker.edu.kiar.bank.api.module.transaction.service;
 
 import com.netcracker.edu.kiar.bank.api.module.account.dao.AccountEntity;
 import com.netcracker.edu.kiar.bank.api.module.account.dao.AccountRepository;
-import com.netcracker.edu.kiar.bank.api.module.account.service.AccountServiceImplTest;
 import com.netcracker.edu.kiar.bank.api.module.exceptions.BusinessException;
 import com.netcracker.edu.kiar.bank.api.module.transaction.model.dto.ExternalTransactionForm;
 import com.netcracker.edu.kiar.bank.api.module.transaction.model.dto.InternalTransactionForm;

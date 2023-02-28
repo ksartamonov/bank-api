@@ -20,6 +20,7 @@ public class UserHelper {
     /**
      * Retrieves the current authenticated user by extracting the username from the security context holder and
      * fetching the corresponding UserEntity from the repository.
+     *
      * @return the UserEntity corresponding to the current authenticated user
      */
     public UserEntity getCurrentUser() {
