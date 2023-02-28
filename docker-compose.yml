@@ -12,7 +12,7 @@ services:
   bank-api-service:
     image: bank-api-service-image
     restart: always
-    build: bank-api-service
+    build: .
     depends_on:
       - edu-db
     ports:
